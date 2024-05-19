@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>FS-website</title>
+    <link rel="stylesheet" href="header-footer.css">
+    <link rel="stylesheet" href="content-page.css">
+    <link rel="stylesheet" href="reset.css">
+
+    <style>
+
+.shoppingcart{
+    width: 900px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+img{
+    width: 100px;
+}
+button{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+.rightside{
+    display: flex;
+}
+
+.number{
+    width: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+    </style>
+</head>
+
+<body>
+    <div id="app">
+<h6>{{cardlist[0]['title']}}</h6>
+<div class="shoppingcart">
+<img src="/images/arkorelax-kids.png" alt="">
+<p>{{cardlist[0]['name']}}</p>
+<p>{{cardlist[0]['subTitle']}}</p>
+<div class="number">
+<button @click="minus(0)">-</button>
+{{cardlist[0]['count']}}
+<button @click="add(0)">+</button>
+</div>
+<p>${{cardlist[0]['price']}}</p>
+<button>✖</button>
+<div class="rightside"></div>
+</div>
+</div>
+<script src="https://unpkg.com/vue"></script>
+
+<script>
+
+    Vue.createApp({
+        data() {
+            return {
+                cardlist:[
+                    {
+                        id:1,
+                        title:'aaa',
+                        name: 'ccc',
+                        subTitle:'bbb',
+                        price:1000,
+                        count:1,
+                        img:"/images/arkorelax-kids.png"
+
+                    }
+                ]
+            }
+        },
+        methods: {
+            add(index){
+                this.cardlist[index]['count'] += 1
+            },
+            minus(index){
+                if (this.cardlist[index]['count'] >0) 
+                this.cardlist[index]['count'] -= 1
+            }
+        },
+    }).mount('#app')
+</script>
+</body>
+
+</html>

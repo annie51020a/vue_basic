@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4html</title>
+    <style>
+        img {
+            width: 20rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <img src="/images/artichaut-45.png" alt="">
+        <!-- <img :src="imgUrl" style="width: 6rem;" alt=""> -->
+        <img :src="imgUrl" :style="{
+        width: `${widths}rem`,
+        backgroundColor: bg,
+        padding: '0.5rem'
+        }" alt="">
+        
+        <button @click="addW">加大圖片</button>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+
+    <script>
+
+        Vue.createApp({
+            data() {
+                return {
+                    imgUrl: "/images/artichaut-45.png",
+                    widths: 2,
+                    bg: '#999'
+                }
+            },
+            methods: {
+                addW() {
+                    if (this.widths === 9) return
+                    //每次按就加大圖片
+                    this.widths += 1
+                    //每次按就改底色
+                    this.bg = `#${this.widths}${this.widths}${this.widths}`
+                }
+            },
+        }).mount('#app')
+    </script>
+</body>
+
+</html>
